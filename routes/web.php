@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//STAFF ROUTES
+Route::prefix('staff')->group(function () {
+    Route::get('login', 'StaffAuthController@showLoginForm')->name('staff.login');
+    Route::post('login', 'StaffAuthController@login');
+    Route::post('logout', 'StaffAuthController@logout')->name('staff.logout');
+});
+
+//READER ROUTES
+Route::prefix('reader')->group(function () {
+    Route::get('login', 'ReaderAuthController@showLoginForm')->name('reader.login');
+    Route::post('login', 'ReaderAuthController@login');
+    Route::post('logout', 'ReaderAuthController@logout')->name('reader.logout');
+});
