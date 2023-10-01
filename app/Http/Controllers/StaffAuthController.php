@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,14 +11,16 @@ class StaffAuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (Auth::guard('staff')->attempt($credentials)) {
-            return redirect()->intended('/staff/dashboard');
+            if($request->user_type == 'staff'){
+                $user = Staff::where('email', $request->email)->first();
+                $user->assignRole('admin');
+                return redirect()->intended('/admin/dashboard');
+            }else{
+                return redirect()->intended('/admin/dashboard');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
     }
 
     public function logout()

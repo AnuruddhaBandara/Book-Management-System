@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StaffAuthController;
+use App\Http\Controllers\StaffRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +20,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+
+
+Route::post('/login', [AuthController::class, 'loginDispatcher']);
+
 //STAFF ROUTES
-Route::prefix('staff')->group(function () {
-    Route::get('login', 'StaffAuthController@showLoginForm')->name('staff.login');
-    Route::post('login', 'StaffAuthController@login');
-    Route::post('logout', 'StaffAuthController@logout')->name('staff.logout');
+Route::prefix('/staff')->group(function () {
+    Route::post('login', [StaffAuthController::class,'login']);
+    Route::post('logout', [StaffAuthController::class,'logout'])->name('staff.logout');
+    Route::get('/register', [StaffRegistrationController::class, 'showRegistrationForm'])->name('staff.register');
+    Route::post('/register', [StaffRegistrationController::class, 'register']);
+
 });
 
 //READER ROUTES
