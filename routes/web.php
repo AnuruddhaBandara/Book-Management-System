@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\StaffRegistrationController;
@@ -43,3 +44,6 @@ Route::prefix('reader')->group(function () {
     Route::post('login', 'ReaderAuthController@login');
     Route::post('logout', 'ReaderAuthController@logout')->name('reader.logout');
 });
+
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('is_admin');//check when admin loging
+
