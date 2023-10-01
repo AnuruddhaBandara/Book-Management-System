@@ -31,8 +31,8 @@ Route::post('/login', [AuthController::class, 'loginDispatcher']);
 
 //STAFF ROUTES
 Route::prefix('/staff')->group(function () {
-    Route::post('login', [StaffAuthController::class,'login']);
-    Route::post('logout', [StaffAuthController::class,'logout'])->name('staff.logout');
+    // Route::post('login', [StaffAuthController::class,'login']);
+    Route::get('/logout', [StaffAuthController::class,'logout'])->name('staff.logout');
     Route::get('/register', [StaffRegistrationController::class, 'showRegistrationForm'])->name('staff.register');
     Route::post('/register', [StaffRegistrationController::class, 'register']);
 

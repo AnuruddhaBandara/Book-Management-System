@@ -16,7 +16,13 @@ class BaseRepository implements BaseRepositoryInterface
         $this->model = $model;
     }
 
-
+    public function create($attributes)
+    {
+        return  DB::transaction(function () use ($attributes) {
+            $this->model->create($attributes);
+            return $attributes;
+        });
+    }
     public function save(Model $object)
     {
         return  DB::transaction(function () use ($object) {
