@@ -2,12 +2,12 @@
 
 namespace App\Repository;
 
-use App\Interface\RegisterationReposotoryInterface;
+use App\Interface\StaffRegisterationReposotoryInterface;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
 
 
-class RegistrationRepository extends BaseRepository implements RegisterationReposotoryInterface
+class StaffRegistrationRepository extends BaseRepository implements StaffRegisterationReposotoryInterface
 {
 
     public function __construct(Staff $model)

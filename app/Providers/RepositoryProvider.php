@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Interface\BaseRepositoryInterface;
-use App\Interface\RegisterationReposotoryInterface;
+use App\Interface\StaffRegisterationReposotoryInterface;
+use App\Interface\ReaderRegistrationRepositoryInterface;
 use App\Repository\BaseRepository;
-use App\Repository\RegistrationRepository;
+use App\Repository\StaffRegistrationRepository;
+use App\Repository\ReaderRegistrationRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
@@ -16,7 +18,8 @@ class RepositoryProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
-        $this->app->bind(RegisterationReposotoryInterface::class, RegistrationRepository::class);
+        $this->app->bind(StaffRegisterationReposotoryInterface::class, StaffRegistrationRepository::class);
+        $this->app->bind(ReaderRegistrationRepositoryInterface::class, ReaderRegistrationRepository::class);
     }
 
     /**

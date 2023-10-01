@@ -14,22 +14,23 @@
             <div>
 
                 @if(Auth::user() && Auth::user()->isAdmin())
-                <a href="{{ url('admin/dashboard') }}" class="text-white mx-2">Admin Dashboard</a>
+                <a href="{{ url('admin/dashboard') }}" class="text-white mx-2"> Dashboard</a>
                 @else
                 <a href="{{ url('/') }}" class="text-white mx-2">Home</a>
+                <a href="{{ url('staff/register') }}" class="text-white mx-2">Staff Register</a>
+                <a href="{{ url('reader/register') }}" class="text-white mx-2">Reader Register</a>
                 <a href="{{ url('/login') }}" class="text-white mx-2">Login</a>
-                <a href="{{ url('staff/register') }}" class="text-white mx-2">Register</a>
                 @endif
                 @if(Auth::user())
-                <a class="text-gray-600 hover:text-gray-900" href="{{ route('staff.logout') }}">Logout</a>
+                    <a class="text-gray-600 hover:text-gray-900" href="{{ route('staff.logout') }}">Logout</a>
                 @endif
             </div>
         </div>
     </nav>
     <!-- End of navigation bar -->
+
     <div class="container mx-auto px-4 pt-16">
         @yield('content')
     </div>
-
 </body>
 </html>

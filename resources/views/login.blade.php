@@ -1,45 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- Add Bootstrap for styling -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        Login
+@extends('layouts.app')
+
+@section('content')
+<div class="container mx-auto px-4">
+    <div class="flex justify-center">
+        <div class="w-full lg:w-1/2">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="font-bold text-2xl mb-4">Login</div>
+
+                <form action="{{ url('/login') }}" method="post">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="user_type" class="block text-sm font-medium text-gray-600">User Type</label>
+                        <select name="user_type" id="user_type" class="mt-1 p-2 w-full border rounded-md">
+                            <option value="staff">Admin</option>
+                            <option value="staff">Editor</option>
+                            <option value="staff">Viewer</option>
+                            <option value="reader">Reader</option>
+                        </select>
                     </div>
-                    <div class="card-body">
-                        <form action="{{ url('/login') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="user_type">User Type</label>
-                                <select name="user_type" id="user_type" class="form-control">
-                                    <option value="staff">Admin</option>
-                                    <option value="staff">Editor</option>
-                                    <option value="staff">Viewer</option>
-                                    <option value="reader">Reader</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                        <input type="email" name="email" id="email" class="mt-1 p-2 w-full border rounded-md" required>
+                        @if ($errors->has('email'))
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                    @endif
                     </div>
-                </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                        <input type="password" name="password" id="password" class="mt-1 p-2 w-full border rounded-md" required>
+
+                        @if ($errors->has('password'))
+                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                    @endif
+                    </div>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
+                </form>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+@endsection

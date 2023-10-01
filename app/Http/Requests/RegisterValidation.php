@@ -24,7 +24,7 @@ class RegisterValidation extends FormRequest
         return [
 
             'name' => 'required|string|regex:/^[a-zA-Z\s\'-]+$/',
-            'email' => 'required|string|email|max:255|unique:staff',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8|confirmed',
 
 
@@ -34,7 +34,7 @@ class RegisterValidation extends FormRequest
     {
         return [
             'name.regex' => 'Please provide a valid name.',
-            'email' => 'Please provide a unique Email for staff.',
+            'email' => 'Please provide a unique Email.',
             'password' => 'Password must contain at least 8 characters.'
         ];
     }

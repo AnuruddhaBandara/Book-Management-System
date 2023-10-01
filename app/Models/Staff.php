@@ -16,8 +16,5 @@ class Staff extends Model implements AuthenticatableContract
         'name',
         'email',
         'password',
-
-
-
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 namespace App\Interface;
 
-interface RegisterationReposotoryInterface{
+interface ReaderRegistrationRepositoryInterface{
     public function register($request);
 }

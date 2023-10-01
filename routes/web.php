@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\StaffRegistrationController;
+use App\Http\Controllers\ReaderRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,9 +40,10 @@ Route::prefix('/staff')->group(function () {
 });
 
 //READER ROUTES
-Route::prefix('reader')->group(function () {
-    Route::get('login', 'ReaderAuthController@showLoginForm')->name('reader.login');
-    Route::post('login', 'ReaderAuthController@login');
+Route::prefix('/reader')->group(function () {
+    Route::get('/register', [ReaderRegistrationController::class, 'showRegistrationForm'])->name('reader.register');
+    Route::post('/register', [ReaderRegistrationController::class, 'register']);
+    Route::get('/dashboard', [ReaderController::class, 'dashboard'])->name('reader.dashboard');
     Route::post('logout', 'ReaderAuthController@logout')->name('reader.logout');
 });
 
