@@ -8,7 +8,7 @@
         <div class="md:flex">
            <div class="p-8">
                 <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Book List</div>
-                {{-- <a href="{{ route('admin.books.index') }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Go to Book List</a> --}}
+                <a href="{{ route('admin.books.index') }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Go to Book List</a>
                 </div>
         </div>
     </div>

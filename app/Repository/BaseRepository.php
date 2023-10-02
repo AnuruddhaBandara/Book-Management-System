@@ -42,9 +42,22 @@ class BaseRepository implements BaseRepositoryInterface
     public function update(array $attributes, int $id): bool
     {
         return DB::transaction(function () use ($attributes, $id) {
-             return $this->find($id)->update($attributes);
+            $model = $this->find($id);
+
+            if (!$model) {
+                // Handle the case where the record doesn't exist.
+                return false;
+            }
+
+            try {
+                return $model->update($attributes);
+            } catch (\Exception $e) {
+               dd($e);
+                return false;
+            }
         });
     }
+
 
     public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'asc')
     {

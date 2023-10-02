@@ -22,6 +22,19 @@
     </nav>
 
     <div class="container mx-auto mt-8">
+        <!-- Flash Message Section -->
+        @if (session('error'))
+                <div class="alert alert-danger bg-red-500 text-white p-4 mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success bg-green-500 text-white p-4 mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <!-- End of Flash Message Section -->
+
         @yield('content')
     </div>
 
