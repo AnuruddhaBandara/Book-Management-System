@@ -14,6 +14,11 @@ class StaffRegistrationController extends Controller
     public function __construct(StaffRegisterationReposotoryInterface $registerRepo){
         $this->registerRepo = $registerRepo;
     }
+    public function listStaff()
+    {
+        $users = Staff::all();
+        return view('staff.index', ['users' => $users]);
+    }
     public function showRegistrationForm()
     {
         return view('staff.register');

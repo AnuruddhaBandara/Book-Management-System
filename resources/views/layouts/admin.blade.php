@@ -13,8 +13,8 @@
                 <a class="text-lg font-semibold text-gray-900" href="#">Staff Dashboard</a>
                 <div class="space-x-4">
                     <a class="text-gray-600 hover:text-gray-900" href="{{ route('admin.dashboard') }}">Home</a>
-                    {{-- <a class="text-gray-600 hover:text-gray-900" href="{{ route('admin.books.index') }}">Books</a> --}}
-                    {{-- <a class="text-gray-600 hover:text-gray-900" href="{{ route('staff.index') }}">Staff</a> --}}
+                    <a class="text-gray-600 hover:text-gray-900" href="{{ route('admin.books.index') }}">Books</a>
+                    <a class="text-gray-600 hover:text-gray-900" href="{{ route('staff.index') }}">Staff</a>
                     <a class="text-gray-600 hover:text-gray-900" href="{{ route('staff.logout') }}">Logout</a>
                 </div>
             </div>

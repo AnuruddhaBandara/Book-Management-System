@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Interface\BaseRepositoryInterface;
+use App\Interface\BookingBorrowRepositoryInterface;
 use App\Interface\BookingRepositoryInterface;
 use App\Interface\StaffRegisterationReposotoryInterface;
 use App\Interface\ReaderRegistrationRepositoryInterface;
 use App\Repository\BaseRepository;
+use App\Repository\BookingBorrowRepository;
 use App\Repository\BookingRepository;
 use App\Repository\StaffRegistrationRepository;
 use App\Repository\ReaderRegistrationRepository;
@@ -23,6 +25,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(StaffRegisterationReposotoryInterface::class, StaffRegistrationRepository::class);
         $this->app->bind(ReaderRegistrationRepositoryInterface::class, ReaderRegistrationRepository::class);
         $this->app->bind(BookingRepositoryInterface::class, BookingRepository::class);
+        $this->app->bind(BookingBorrowRepositoryInterface::class, BookingBorrowRepository::class);
     }
 
     /**

@@ -18,7 +18,7 @@
         <div class="md:flex">
            <div class="p-8">
                 <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Borrow List</div>
-                {{-- <a href="{{ route('reader.borrows') }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Go to Borrow List</a> --}}
+                <a href="{{ route('reader.borrows') }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Go to Borrow List</a>
                 </div>
         </div>
     </div>

@@ -31,9 +31,6 @@
                         <a href="{{ route('admin.books.edit', $book->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded inline-block">
                             Edit
                         </a>
-                        <a href="{{ route('admin.books.borrow_book', $book->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded inline-block">
-                            Borrow
-                        </a>
                         <form action="{{ route('admin.books.destroy',  ['id' => $book->id]) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
@@ -41,25 +38,18 @@
                                 Delete
                             </button>
                         </form>
-
+                        <form action="{{ route('borrow.create') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="book_id" value="{{ $book->id }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}"> <!-- Assuming the user is logged in -->
+                            <input type="hidden" name="return_by" value="{{ now()->addDays(7) }}"> <!-- Return in 7 days -->
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Borrow
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-    <!-- Flash Message Section -->
-    @if (session('error'))
-                <div class="alert alert-danger bg-red-500 text-white p-4 mb-4">
-                    {{ session('error') }}
-                </div>
-            @endif
-            @if (session('success'))
-                <div class="alert alert-success bg-green-500 text-white p-4 mb-4">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <!-- End of Flash Message Section -->
-
-
 @endsection
