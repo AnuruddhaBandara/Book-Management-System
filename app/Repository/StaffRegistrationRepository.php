@@ -16,11 +16,12 @@ class StaffRegistrationRepository extends BaseRepository implements StaffRegiste
     }
 
     public function register($request){
-
         $this->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->user_type,
+            'user_type' => $request->user_type,
         ]);
     }
 }

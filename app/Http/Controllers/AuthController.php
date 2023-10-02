@@ -12,8 +12,7 @@ class AuthController extends Controller
     public function loginDispatcher(Request $request)
     {
         $userType = $request->input('user_type');
-
-        if ($userType === 'staff') {
+        if ($userType === 'admin' || $userType === 'editor' || $userType === 'viewer') {
             $staffAuthController = new StaffAuthController();
             return $staffAuthController->login($request);
         } elseif ($userType === 'reader') {

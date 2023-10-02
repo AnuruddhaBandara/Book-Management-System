@@ -12,9 +12,9 @@
                     <div class="mb-4">
                         <label for="user_type" class="block text-sm font-medium text-gray-600">User Type</label>
                         <select name="user_type" id="user_type" class="mt-1 p-2 w-full border rounded-md">
-                            <option value="staff">Admin</option>
-                            <option value="staff">Editor</option>
-                            <option value="staff">Viewer</option>
+                            <option value="admin">Admin</option>
+                            <option value="editor">Editor</option>
+                            <option value="viewer">Viewer</option>
                             <option value="reader">Reader</option>
                         </select>
                     </div>

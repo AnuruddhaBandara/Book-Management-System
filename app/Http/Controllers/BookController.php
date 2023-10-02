@@ -40,7 +40,7 @@ class BookController extends Controller
     public function create()
     {
         $user = Auth::guard('staff')->user();
-        if (!$user->hasPermissionTo('edit books')) {
+        if (!$user->role != 'admin' || !$user->hasPermissionTo('add books')) {
             return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
         }else{
             $books = $this->bookRepo->getAllBooks();
@@ -78,7 +78,7 @@ class BookController extends Controller
 
         $logged_in_user = Auth::guard('staff')->user();
 
-        if (!$logged_in_user->hasPermissionTo('edit books')) {
+        if (!$logged_in_user->role != 'admin' || !$logged_in_user->hasPermissionTo('add books')) {
 
             return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
         }else{
@@ -115,7 +115,15 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->bookRepo->deleteBook($id);
-        return redirect()->route('admin.books.index');
+        $logged_in_user = Auth::guard('staff')->user();
+        if(!$logged_in_user->role != 'admin'){
+            return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to delete books');
+
+        }
+        else{
+
+            $this->bookRepo->deleteBook($id);
+            return redirect()->route('admin.books.index');
+        }
     }
 }
