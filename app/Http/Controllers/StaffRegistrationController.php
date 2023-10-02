@@ -6,6 +6,8 @@ use App\Http\Requests\RegisterValidation;
 use App\Interface\StaffRegisterationReposotoryInterface;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class StaffRegistrationController extends Controller
@@ -16,8 +18,14 @@ class StaffRegistrationController extends Controller
     }
     public function listStaff()
     {
-        $users = Staff::all();
-        return view('staff.index', ['users' => $users]);
+        $loggedInUser = Auth::guard('staff')->user();
+        if($loggedInUser->role != 'admin' || !$loggedInUser->hasPermissionTo('manage staff')){
+            return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
+        }
+        else{
+            $users = $this->registerRepo->allStaffMembers();//Staff::all();
+            return view('staff.index', ['users' => $users]);
+        }
     }
     public function changeStatus(Request $request, $id)
     {

@@ -39,9 +39,16 @@ class BorrowController extends Controller
 
     public function createBorrowRecord()
     {
-        $books = $this->bookRepo->getAllBooks();
-        $users =$this->readerRepo->getAllReaders();
-        return view('admin.books.borrow_book', ['books' => $books, 'users' => $users]);
+        $loggedInUser = Auth::guard('staff')->user();
+        if($loggedInUser->role == 'viewer' || !$loggedInUser->hasPermissionTo('assign books')){
+            return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to assign books.');
+
+        }
+        else{
+            $books = $this->bookRepo->getAllBooks();
+            $users =$this->readerRepo->getAllReaders();
+            return view('admin.books.borrow_book', ['books' => $books, 'users' => $users]);
+        }
     }
 
     public function store(Request $request)

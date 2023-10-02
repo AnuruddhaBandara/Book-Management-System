@@ -26,7 +26,6 @@ class BookController extends Controller
 
         $user = Auth::guard('staff')->user();
         if ($user == NUll || ($user && !$user->hasPermissionTo('view books'))) {
-            // dd(2);
             return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
         }else{
             $books = $this->bookRepo->getAllBooks();
@@ -40,7 +39,7 @@ class BookController extends Controller
     public function create()
     {
         $user = Auth::guard('staff')->user();
-        if (!$user->role != 'admin' || !$user->hasPermissionTo('add books')) {
+        if ($user->role != 'admin' || !$user->hasPermissionTo('add books')) {
             return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
         }else{
             $books = $this->bookRepo->getAllBooks();
@@ -75,16 +74,15 @@ class BookController extends Controller
     {
 
         $book = $this->bookRepo->booksFindById($id);
-
         $logged_in_user = Auth::guard('staff')->user();
-
-        if (!$logged_in_user->role != 'admin' || !$logged_in_user->hasPermissionTo('add books')) {
+        // dd($logged_in_user->role);
+        if ($logged_in_user->role == 'viewer'  || !$logged_in_user->hasPermissionTo('edit books')) {
 
             return redirect()->route('admin.dashboard')->with('error', 'You do not have permission to view this page.');
         }else{
             $books = $this->bookRepo->getAllBooks();
 
-            return view('admin.books.index', compact('books'))->with('success', 'Operation completed successfully.');
+            return view('admin.books.edit', compact('books'))->with('success', 'Operation completed successfully.');
         }
 
     }

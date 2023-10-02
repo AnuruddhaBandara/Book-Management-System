@@ -24,4 +24,7 @@ class StaffRegistrationRepository extends BaseRepository implements StaffRegiste
             'user_type' => $request->user_type,
         ]);
     }
+    public function allStaffMembers(){
+       return $this->all();
+    }
 }
