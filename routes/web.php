@@ -40,7 +40,9 @@ Route::prefix('/staff')->group(function () {
     Route::get('/logout', [StaffAuthController::class,'logout'])->name('staff.logout');
     Route::get('/register', [StaffRegistrationController::class, 'showRegistrationForm'])->name('staff.register');
     Route::post('/register', [StaffRegistrationController::class, 'register']);
-Route::get('', [StaffRegistrationController::class, 'listStaff'])->name('staff.index');
+    Route::get('', [StaffRegistrationController::class, 'listStaff'])->name('staff.index');
+    Route::post('/changeStatus/{id}', [StaffRegistrationController::class, 'changeStatus'])->name('staff.changestatus');
+
 
 
 });

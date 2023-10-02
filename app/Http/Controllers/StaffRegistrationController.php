@@ -19,6 +19,13 @@ class StaffRegistrationController extends Controller
         $users = Staff::all();
         return view('staff.index', ['users' => $users]);
     }
+    public function changeStatus(Request $request, $id)
+    {
+        $user = Staff::find($id);
+        $user->status = $request->status;
+        $user->save();
+        return redirect()->back();
+    }
     public function showRegistrationForm()
     {
         return view('staff.register');

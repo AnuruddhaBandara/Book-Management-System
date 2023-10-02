@@ -20,7 +20,7 @@
                         <td class="py-2 px-4 border-b border-gray-300">{{ $user->email }}</td>
                         <td class="py-2 px-4 border-b border-gray-300">{{ $user->status }}</td>
                         <td class="py-2 px-4 border-b border-gray-300">
-                            <form action="/users/changeStatus/{{ $user->id }}" method="post" class="flex items-center">
+                            <form action="/staff/changeStatus/{{ $user->id }}" method="post" class="flex items-center">
                                 @csrf
                                 <select name="status" class="border rounded px-3 py-2 focus:ring focus:ring-opacity-50">
                                     <option value="active" {{ $user->status === 'active' ? 'selected' : '' }}>Active</option>
